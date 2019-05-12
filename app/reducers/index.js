@@ -16,7 +16,9 @@ export const initialState = {
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case ALL_CANDIES:
-      return { ...state, candies: action.candies };
+      return {
+        candies: [action.candies]
+      };
     default:
       return state;
   }

@@ -1,30 +1,25 @@
 import React from "react";
-import { HashRouter, Route, Link } from "react-router-dom";
-import { AllCandies } from "./CandiesList";
+import { HashRouter as Router, Route, Link, Switch } from "react-router-dom";
+import CandyList from "./CandiesList";
 
 const Root = () => {
   return (
-    <HashRouter>
+    <Router>
       <div>
-        <nav>
-          Goodie Bag
-          <ul>
-            <li>
-              <Link to="/candies">All Candies</Link>
-            </li>
-            <li>
-              <Link to="/">Home Page</Link>
-            </li>
-          </ul>
-        </nav>
+        <nav>Goodie Bag</nav>
         <main>
           <h1>Welcome to the Goodie Bag!</h1>
-          <p>What a nice home page for your goodies!</p>
         </main>
-        <Route path="/candies" componet={AllCandies} />
-        <Route exact path="/" component={Root} />
+        <Link to="/candies">All Candies</Link>
+
+        <Link to="/">Home Page</Link>
+
+        <Switch>
+          <Route exact path="/" component={CandyList} />
+          <Route exact path="/candies" component={CandyList} />
+        </Switch>
       </div>
-    </HashRouter>
+    </Router>
   );
 };
 

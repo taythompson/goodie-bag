@@ -1,21 +1,31 @@
 import { connect } from "react-redux";
-import react from "react";
-import getCandiesThunk from "../store";
+import React from "react";
+import { getCandies } from "../store";
 
-const candiesList = props => {
-  const allCandies = props.candies;
-  return (
-    <div>
-      {allCandies.map(candy => {
-        return (
-          <li key={candy.id}>
-            {candy.name} {candy.description} {candy.quantity} {candy.imageUrl}
-          </li>
-        );
-      })}
-    </div>
-  );
-};
+class AllCandies extends React.Component {
+  componentDidMount() {
+    this.props.getCandies();
+  }
+  render() {
+    const candies = this.props.candies;
+    return (
+      <div>
+        <ul>
+          {candies.map(candy => {
+            return (
+              <li key={candy.id}>
+                <h2> CANDY: {candy.name} </h2>
+                <p>{candy.description}</p>
+                <p>{candy.quantity}</p>
+                <img src={candy.imageUrl} />
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    );
+  }
+}
 
 const mapStateToProps = state => {
   return {
@@ -25,11 +35,13 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getCandiesThunk: () => dispatch(getCandiesThunk)
+    getCandies: () => dispatch(getCandies)
   };
 };
 
-export const AllCandies = connect(
+const CandyList = connect(
   mapStateToProps,
   mapDispatchToProps
-)(candiesList);
+)(AllCandies);
+
+export default CandyList;

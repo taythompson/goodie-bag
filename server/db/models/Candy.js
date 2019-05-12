@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const db = require("../database");
 
-module.exports = db.define("candy", {
+const Candy = db.define("candy", {
   name: {
     type: Sequelize.STRING,
     allowNull: false
@@ -23,3 +23,5 @@ module.exports = db.define("candy", {
       "https://target.scene7.com/is/image/Target/GUEST_3d2a8073-36e6-4cec-8c8c-872639105820?wid=488&hei=488&fmt=pjpeg"
   }
 });
+
+module.exports = Candy;

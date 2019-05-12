@@ -19,7 +19,20 @@ const router = require("express").Router();
 // middleware will generate a 404, and send it to your
 // error-handling endware!
 
-router.use("/candies", require("./candyRoute"));
+// router.use("/candies", require("./candyRoute"));
+
+const { Candy } = require("../db");
+
+router.get("/candies", async (req, res, next) => {
+  try {
+    const candies = await Candy.findAll({
+      attributes: ["name", "description", "quantity", "imageUrl"]
+    });
+    res.json(candies);
+  } catch (error) {
+    next(error);
+  }
+});
 
 router.use((req, res, next) => {
   const err = new Error("API route not found!");
