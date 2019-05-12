@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import react from "react";
+import getCandiesThunk from "../store";
 
 const candiesList = props => {
   const allCandies = props.candies;
@@ -22,7 +23,13 @@ const mapStateToProps = state => {
   };
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    getCandiesThunk: () => dispatch(getCandiesThunk)
+  };
+};
+
 export const AllCandies = connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(candiesList);
