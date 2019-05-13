@@ -5,28 +5,34 @@
 
 * {
   box-sizing: border-box;
-  font-family: arial, sans-serif;
+  font-family: "Courier New", Courier, monospace;
 }
 
-body::after {
-  content: "";
-  background: url('bg.jpg');
-  opacity: 0.1;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;
+/* body::after {
+  body {
+    background: url("candy.gif") repeat-y 100% 100% fixed;
+    height: 100%;
+    width: 100%;
+  }
+} */
+
+body {
+  background-image: url(https://media.giphy.com/media/rlxvBFLZda9vW/giphy.gif);
+  background-size: cover;
+
+  height: 100vh;
+  padding: 0;
+  margin: 0;
 }
 
 nav {
   align-items: center;
-  background-color: #333333;
-  color: #c0c0c0;
+  background-color: #ffd400;
+  color: #d90368;
   display: flex;
   height: 80px;
   padding: 10px;
+  justify-content: space-between;
 }
 
 main {
@@ -34,4 +40,9 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.navbar {
+  color: white;
+  font-size: 20px;
 }

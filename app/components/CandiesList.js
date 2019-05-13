@@ -1,13 +1,15 @@
 import { connect } from "react-redux";
 import React from "react";
-import { getCandies } from "../store";
+import { getCandies } from "../reducers/index";
+import Link from "react-router-dom";
 
 class AllCandies extends React.Component {
   componentDidMount() {
     this.props.getCandies();
   }
   render() {
-    const candies = this.props.candies;
+    const { candies, id } = this.props.candies;
+
     return (
       <div>
         <ul>
@@ -17,7 +19,9 @@ class AllCandies extends React.Component {
                 <h2> CANDY: {candy.name} </h2>
                 <p>{candy.description}</p>
                 <p>{candy.quantity}</p>
-                <img src={candy.imageUrl} />
+                <Link to={`/candies/${id}`}>
+                  <img src={candy.imageUrl} />
+                </Link>
               </li>
             );
           })}
@@ -35,7 +39,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getCandies: () => dispatch(getCandies)
+    getCandies: () => dispatch(getCandies())
   };
 };
 

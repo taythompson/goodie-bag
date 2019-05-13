@@ -25,10 +25,17 @@ const { Candy } = require("../db");
 
 router.get("/candies", async (req, res, next) => {
   try {
-    const candies = await Candy.findAll({
-      attributes: ["name", "description", "quantity", "imageUrl"]
-    });
+    const candies = await Candy.findAll();
     res.json(candies);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get("/candies/:id", async (req, res, next) => {
+  try {
+    const candy = await Candy.findById(req.params.id);
+    res.json(candy);
   } catch (error) {
     next(error);
   }
@@ -39,5 +46,9 @@ router.use((req, res, next) => {
   err.status = 404;
   next(err);
 });
+
+// {
+//   attributes: ["name", "description", "quantity", "imageUrl"]
+// }
 
 module.exports = router;
